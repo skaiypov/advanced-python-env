@@ -1,50 +1,45 @@
-#покупки
+# Ввод товаров
+items = input().split()
 
-line = input()
-
-items = line.split()
-
-# словарь
-freq = {}
-
-# количество покупок
+# Подсчёт частоты покупок
+dict = {}
 for item in items:
-    if item in freq:
-        freq[item] = freq[item] + 1
+    if item in dict:
+        dict[item] += 1
     else:
-        freq[item] = 1
+        dict[item] = 1
 
-# частота покупок
+# Частота покупок
 print("Purchase frequency:")
-for item in freq:
-    print(item + ":", freq[item])
+for item, count in dict.items():
+    print(item + ": " + str(count))
 
-# самый популярный товар
-max_count = 0
+# Самый частый товар
 popular = ""
-
-for item in freq:
-    if freq[item] > max_count:
-        max_count = freq[item]
+max_count = 0
+for item, count in dict.items():
+    if count > max_count:
+        max_count = count
         popular = item
 
 print("Most popular item:", popular)
 
-# товары, купленные один раз
+# Товары, купленные один раз
 print("Purchased once:", end=" ")
-for item in freq:
-    if freq[item] == 1:
+for item, count in dict.items():
+    if count == 1:
         print(item, end=" ")
 print()
 
-#  сорт
+# Список пар (частота, товар)
 pairs = []
+for item, count in dict.items():
+    pairs.append((count, item))
 
-for item in freq:
-    pairs.append((freq[item], item))
-
+# Сортировка по частоте (по убыванию)
 pairs.sort(reverse=True)
 
+# Вывод отсортированных товаров
 print("Sorted by frequency:")
 for count, item in pairs:
     print(item, count)
