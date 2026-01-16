@@ -14,42 +14,57 @@
 #  - Withdrawal must not exceed balance
 
 
-class BankAccount:
-    def __init__(self, owner, balance):
-        self.__owner = owner
-        self.__balance = balance
 
+
+class BankAccount:
     def deposit(self, amount):
         if amount > 0:
-            self.__balance = self.__balance + amount
-            print(amount, "тенге пополнено. Баланс:", self.__balance, "тенге")
+            self._balance += amount
+            print(amount, "пополнено на счёт", self._owner)
         else:
-            print("Невозможно пополнить", amount, "тенге, сумма должна быть положительной")
+            print("Сумма должна быть положительной")
 
     def withdraw(self, amount):
-        if amount > self.__balance:
-            print("Не удалось снять", amount, "тенге, недостаточно средств. Баланс:", self.__balance, "тенге")
+        if amount > self._balance:
+            print("Недостаточно средств")
         elif amount <= 0:
-            print("Невозможно снять", amount, "тенге, сумма должна быть положительной")
+            print("Сумма должна быть положительной")
         else:
-            self.__balance = self.__balance - amount
-            print(amount, "тенге списано. Баланс:", self.__balance, "тенге")
+            self._balance -= amount
+            print(amount, "снято со счёта", self._owner)
 
     def get_balance(self):
-        return self.__balance
+        print("Баланс", self._owner, ":", self._balance)
+        return self._balance
 
 
-acc1 = BankAccount("Мансур", 100000)
-acc2 = BankAccount("Ескендир", 50000)
+class VIPAccount(BankAccount):
+    def get_balance(self):
+        print("Баланс", self._owner, ":", self._balance)
+        print("Так как вы VIP клиент, переводы на другие банки для вас без комиссии")
+        return self._balance
 
+
+
+acc1 = BankAccount()
+acc1._owner = "Мансур"
+acc1._balance = 100000
+
+acc2 = VIPAccount()
+acc2._owner = "Ескендир"
+acc2._balance = 50000
+
+# Операции
 acc1.deposit(20000)
 acc1.withdraw(15000)
-acc2.withdraw(60000)
-acc2.deposit(-5000)
-acc2.withdraw(-10000)
 
-print()
-print("Баланс Мансура:", acc1.get_balance(), "тенге")
-print("Баланс Ескендира:", acc2.get_balance(), "тенге")
+acc2.deposit(10000)
+acc2.withdraw(20000)
+
+acc1.get_balance()
+acc2.get_balance()
+
+
+
 
 

@@ -12,42 +12,29 @@
 #    - Polymorphism
 
 
-
 class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.__age = age
-
     def greet(self):
         return "Hello, I'm " + self.name
 
-    def get_age(self):
-        return self.__age
-
 
 class Student(Person):
-    def __init__(self, name, age, university):
-        Person.__init__(self, name, age)
-        self.university = university
-
     def greet(self):
-        return "Hi, I study at " + self.university + " and my name is " + self.name
+        return "Hi, my name is " + self.name
 
+p = Person()
+p.name = "Mansur"
 
-p1 = Person("Mansur", 19)
-s1 = Student("Eskendir", 18, "Astana IT Universiry")
+s = Student()
+s.name = "Eskendir"
 
-people = [p1, s1]
+arr = [p, s]
 
-for person in people:
+for person in arr:
     print(person.greet())
-    print("Age:", person.get_age())
-    print()
-
 
 #Encapsulation: __age is hidden.
 
-#Inheritance: Student > Person.
+#Inheritance: Person --> Student
 
 #Polymorphism: The greet() method behaves differently.
 

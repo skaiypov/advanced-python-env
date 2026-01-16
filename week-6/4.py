@@ -16,41 +16,38 @@
 
 
 class Employee:
-    def __init__(self, name, salary):
-        self.name = name
-        self.__salary = salary
-
     def get_salary(self):
-        return self.__salary
+        return self._salary
 
     def get_role(self):
-        return "Employee"
+        return "employee"
 
 
 class Manager(Employee):
-    def __init__(self, name, salary, bonus):
-        super().__init__(name, salary)
-        self.bonus = bonus
-
     def get_role(self):
-        return "Manager"
+        return "manager"
 
     def get_bonus(self):
-        return self.bonus
+        return 10000
 
 
-def print_employee_info(employee_list):
-    for emp in employee_list:
-        role = emp.get_role()
-        salary = emp.get_salary()
-        print(emp.name, "is the", role, "with salary", salary)
+def total_info(employee_list):
+    for i in employee_list:
+        print(i.name, "is the", i.get_role(), "with salary", i.get_salary())
 
 
+e1 = Employee()
+e1.name = "Mansur"
+e1._salary = 50000
 
-e1 = Employee("Mansur", 50000)
-e2 = Employee("Eskendir", 45000)
-m1 = Manager("Cristina", 70000, 10000)
+e2 = Employee()
+e2.name = "Eskendir"
+e2._salary = 45000
+
+m1 = Manager()
+m1.name = "Cristina"
+m1._salary = 70000
 
 all_employees = [e1, e2, m1]
 
-print_employee_info(all_employees)
+total_info(all_employees)

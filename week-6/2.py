@@ -22,4 +22,4 @@ with open("students.json") as json_in:
         i["average_grade"] = int(average) #add new line
 
 with open("students_upd.json", "w") as json_out:
-    json.dump(students, json_out, indent=2)    
+    json.dump(students, json_out)    
